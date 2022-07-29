@@ -1,0 +1,34 @@
+x-env:
+  &env
+  CONFIG: /etc/config/default.yaml
+  SVCADDR_SERVICE_SPOTS: service-spots:50051
+  SVCADDR_SERVICE_USERS: service-users:50051
+
+services:
+  service-spots:
+    build:
+      context: backend
+      dockerfile: Dockerfile
+      args:
+        SERVICE_NAME: service.spots
+    image: roamd-world/service.spots:v0.0.0
+    ports:
+      - 3001:8081
+    environment:
+      <<: *env
+    volumes:
+      - ./backend/services/service.spots/config:/etc/config
+
+  service-users:
+    build:
+      context: backend
+      dockerfile: Dockerfile
+      args:
+        SERVICE_NAME: service.users
+    image: roamd-world/service.users:v0.0.0
+    ports:
+      - 3002:8081
+    environment:
+      <<: *env
+    volumes:
+      - ./backend/services/service.users/config:/etc/config

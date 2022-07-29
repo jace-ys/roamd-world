@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option go_package = "github.com/jace-ys/roamd-world/backend/service.spots/proto/v1;spotspb";
+
+package spots;
+
+service Spots {
+  rpc GetSpot (GetSpotRequest) returns (GetSpotReply) {}
+}
+
+message GetSpotRequest {
+  string id = 1;
+}
+
+message GetSpotReply {
+  string name = 1;
+}

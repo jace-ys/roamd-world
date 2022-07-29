@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option go_package = "github.com/jace-ys/roamd-world/backend/service.users/proto/v1;userspb";
+
+package users;
+
+service Users {
+  rpc GetUser (GetUserRequest) returns (GetUserReply) {}
+}
+
+message GetUserRequest {
+  string id = 1;
+}
+
+message GetUserReply {
+  string username = 1;
+  string email = 2;
+}
